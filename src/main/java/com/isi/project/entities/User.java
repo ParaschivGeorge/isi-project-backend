@@ -6,6 +6,7 @@ import com.isi.project.entities.enums.UserType;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -45,6 +46,10 @@ public class  User {
     @JsonIgnore
     @Column(name="current_login_date")
     private Date currentLoginDate;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Incident> incidents;
 
     public Long getId() {
         return id;
@@ -116,6 +121,14 @@ public class  User {
 
     public void setCurrentLoginDate(Date currentLoginDate) {
         this.currentLoginDate = currentLoginDate;
+    }
+
+    public List<Incident> getIncidents() {
+        return incidents;
+    }
+
+    public void setIncidents(List<Incident> incidents) {
+        this.incidents = incidents;
     }
 
     public User() {
