@@ -24,7 +24,7 @@ public class UserService {
                 new User(
                         userRegister.getUsername(),
                         userRegister.getEmail(),
-                        UserType.USER,
+                        userRegister.getUserType(),
                         true,
                         bCryptPasswordEncoder.encode(userRegister.getPassword()),
                         new Date(),

@@ -1,9 +1,12 @@
 package com.isi.project.projections;
 
+import com.isi.project.entities.enums.UserType;
+
 public class UserRegister {
     String email;
     String username;
     String password;
+    UserType userType;
 
     public String getEmail() {
         return email;
@@ -27,5 +30,13 @@ public class UserRegister {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 }
