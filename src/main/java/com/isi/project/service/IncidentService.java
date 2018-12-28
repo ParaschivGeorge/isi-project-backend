@@ -8,7 +8,6 @@ import com.isi.project.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 
 @Service
@@ -22,11 +21,11 @@ public class IncidentService {
         this.userRepository = userRepository;
     }
 
-    public ResponseEntity createIncident(String email, String description) {
+    public ResponseEntity<?> createIncident(String email, String description) {
         User user = userRepository.findByEmail(email);
 
         if (user == null) {
-            return new ResponseEntity("User not found.", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("User not found.", HttpStatus.NOT_FOUND);
         }
 
         Incident incident = new Incident();
@@ -37,6 +36,6 @@ public class IncidentService {
 
         incident = incidentRepository.save(incident);
 
-        return new ResponseEntity("Incident added: " + incident.toString(), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(incident.getId(), HttpStatus.OK);
     }
 }

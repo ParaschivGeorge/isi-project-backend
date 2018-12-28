@@ -18,7 +18,7 @@ public class IncidentController {
     }
 
     @PostMapping(path = "/incident/create")
-    public ResponseEntity createIncident(@RequestParam() String email, @RequestParam() String description) {
+    public ResponseEntity<?> createIncident(@RequestParam() String email, @RequestParam() String description) {
         return this.incidentService.createIncident(email, description);
     }
 }
