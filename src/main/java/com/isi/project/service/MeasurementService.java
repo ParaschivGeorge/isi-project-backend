@@ -16,15 +16,18 @@ import java.util.Random;
 public class MeasurementService {
 
     private MeasurementRepository measurementRepository;
+    private NotificationService notificationService;
 
-    public MeasurementService(MeasurementRepository measurementRepository) {
+    public MeasurementService(MeasurementRepository measurementRepository, NotificationService notificationService) {
         this.measurementRepository = measurementRepository;
+        this.notificationService = notificationService;
     }
 
     public ResponseEntity<?> populateMeasurements(MeasurementType type) {
         this.measurementRepository.deleteAllByType(type);
         if (type == MeasurementType.PH) {
             this.populatePH();
+            this.notificationService.populatNotifications();
         }
 
         return new ResponseEntity<>(HttpStatus.OK);

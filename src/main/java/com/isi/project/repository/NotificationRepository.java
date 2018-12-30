@@ -1,7 +1,6 @@
 package com.isi.project.repository;
 
-import com.isi.project.entities.Measurement;
-import com.isi.project.entities.enums.MeasurementType;
+import com.isi.project.entities.Notification;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -12,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "Measurement", path = "measurement")
-public interface MeasurementRepository  extends CrudRepository<Measurement, Long> {
+public interface NotificationRepository  extends CrudRepository<Notification, Long> {
     @Transactional
     @Modifying
-    void deleteAllByType(@Param("type") MeasurementType type);
+    void deleteAll();
 
-    List<Measurement> findAllByTypeAndTimeIsLessThanEqualOrderByTimeAsc(@Param("type") MeasurementType type, @Param("time") Integer time);
+    List<Notification> findAllByTimeIsLessThanEqualOrderByTimeDesc(@Param("time") Integer time);
 }
