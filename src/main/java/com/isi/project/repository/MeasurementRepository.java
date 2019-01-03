@@ -17,5 +17,5 @@ public interface MeasurementRepository  extends CrudRepository<Measurement, Long
     @Modifying
     void deleteAllByType(@Param("type") MeasurementType type);
 
-    List<Measurement> findAllByTypeAndTimeIsLessThanEqualOrderByTimeAsc(@Param("type") MeasurementType type, @Param("time") Integer time);
+    List<Measurement> findAllByTypeAndTimeIsBetweenOrderByTimeAsc(@Param("type") MeasurementType type, @Param("minTime") Integer minTime, @Param("maxTime") Integer maxTime);
 }

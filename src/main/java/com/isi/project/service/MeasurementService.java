@@ -50,7 +50,7 @@ public class MeasurementService {
     public ResponseEntity<List<Measurement>> getMeasurementsByType(MeasurementType type) {
         Calendar calendar = Calendar.getInstance();
         Integer time = calendar.get(Calendar.HOUR_OF_DAY) * 360 + calendar.get(Calendar.MINUTE) * 6 + calendar.get(Calendar.SECOND) / 10;
-        List<Measurement> measurements = this.measurementRepository.findAllByTypeAndTimeIsLessThanEqualOrderByTimeAsc(type, time);
+        List<Measurement> measurements = this.measurementRepository.findAllByTypeAndTimeIsBetweenOrderByTimeAsc(type,  time - 30, time);
 
         return new ResponseEntity<List<Measurement>>(measurements, HttpStatus.OK);
     }
