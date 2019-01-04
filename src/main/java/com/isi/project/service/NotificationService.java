@@ -28,7 +28,7 @@ public class NotificationService {
     public ResponseEntity<List<Notification>> getNotifications() {
         Calendar calendar = Calendar.getInstance();
         Integer time = calendar.get(Calendar.HOUR_OF_DAY) * 360 + calendar.get(Calendar.MINUTE) * 6 + calendar.get(Calendar.SECOND) / 10;
-        List<Notification> notifications = this.notificationRepository.findAllByTimeIsLessThanEqualOrderByTimeDesc(time);
+        List<Notification> notifications = this.notificationRepository.findTop5ByTimeIsLessThanEqualOrderByTimeDesc(time);
 
         return new ResponseEntity<List<Notification>>(notifications, HttpStatus.OK);
     }

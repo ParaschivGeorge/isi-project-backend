@@ -16,5 +16,5 @@ public interface NotificationRepository  extends CrudRepository<Notification, Lo
     @Modifying
     void deleteAll();
 
-    List<Notification> findAllByTimeIsLessThanEqualOrderByTimeDesc(@Param("time") Integer time);
+    List<Notification> findTop5ByTimeIsLessThanEqualOrderByTimeDesc(@Param("time") Integer time);
 }
